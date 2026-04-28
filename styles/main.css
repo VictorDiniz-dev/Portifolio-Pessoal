@@ -15,8 +15,19 @@ body {
     background-color: var(--background);
     color: var(--text-main);
     line-height: 1.6;
-    transition: background-color var(--transition-base), color var(--transition-base);
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-x: hidden;
+}
+
+/* Ensure all interactive elements transition smoothly */
+a, button, .card, .navbar, .form-input, .skill-bar, .tag {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform var(--transition-fast),
+                box-shadow var(--transition-fast);
 }
 
 /* Layout */
@@ -200,6 +211,13 @@ h3 { font-size: var(--fs-2xl); margin-bottom: var(--space-4); }
 }
 
 .social-link:hover { color: var(--primary); }
+
+/* View Transitions API Customization */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
 
 /* Theme Toggle */
 .theme-switch {
